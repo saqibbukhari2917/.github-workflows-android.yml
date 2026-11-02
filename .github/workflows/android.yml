@@ -21,8 +21,8 @@ jobs:
 
       - name: Install Android SDK
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Prepare project
         run: |
@@ -35,9 +35,11 @@ jobs:
           plugins {
               id 'com.android.application'
           }
+
           android {
               namespace 'com.saqib.poolpro'
               compileSdk 35
+
               defaultConfig {
                   applicationId 'com.saqib.poolpro'
                   minSdk 23
